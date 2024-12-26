@@ -24,7 +24,7 @@ export function AdminSidebar({ expanded = false }) {
     >
       <Sidebar.Items classNam="flex justify-start">
         <Sidebar.ItemGroup>
-          <Link href="/admin" className="flex justify-start">
+          <Link href="/admin" className="flex justify-start text-gray-800">
             <Sidebar.Item icon={HiChartPie}>Dashboard</Sidebar.Item>
           </Link>
           <Link href="/admin/volunteers-requests    " className="flex justify-start">

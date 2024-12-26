@@ -8,7 +8,7 @@ const AdminInboxModel = ({ inboxDetails, onClose }) => {
       id="inboxDetailsModal"
       tabIndex="-1"
       aria-hidden="true"
-      className="fixed top-0 right-0 left-0 z-50 flex md:items-center justify-center items-start w-full h-full overflow-y-scroll overflow-x-hidden bg-gray-800 bg-opacity-50"
+      className="fixed top-0 right-0 left-0 z-50 flex md:items-center justify-center items-start w-full h-full overflow-y-scroll overflow-x-hidden  bg-opacity-50"
     >
       <div className="relative p-4 w-full md:max-w-4xl h-auto bg-white rounded-lg shadow dark:bg-gray-800 py-10 overflow-scroll">
         {/* Modal header */}

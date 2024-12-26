@@ -57,15 +57,15 @@ const AdminDropdownMenu = ({ userImg, name, email, signOutFunc }) => {
       {isOpen && (
         <div
           id="AdminDropdownMenu"
-          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 fixed right-0"
+          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 text-black fixed right-0"
         >
-          <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          <div className="px-4 py-3 text-sm text-gray-900 ">
             <div>{name}</div>
             <div className="font-medium truncate">{email}</div>
           </div>
 
           <div className="py-1">
-            <button onClick={handleSignout} className="w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600">
+            <button onClick={handleSignout} className="w-full text-left px-4 py-2 text-gray-900">
               Sign out
             </button>
           </div>

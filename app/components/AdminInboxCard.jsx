@@ -22,14 +22,14 @@ const AdminInboxCard = ({
     setInboxDetails(null); // This ensures the state is reset when the modal is closed
   };
 
-  const cellClass = `px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ${
+  const cellClass = `px-4 py-2 font-medium text-gray-900 whitespace-nowrap ${
     isLoading ? 'skeleton-loading' : ''
   }`;
 
 
   return (
     <>
-      <tr className="binbox-b dark:binbox-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 w-full" onClick={openModal}>
+      <tr className="  w-full" onClick={openModal}>
         <td className={`px-4 py-2 ${isLoading ? 'skeleton-loading' : ''}`}>
           <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
             {name}

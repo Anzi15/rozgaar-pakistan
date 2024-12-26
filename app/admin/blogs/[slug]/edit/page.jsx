@@ -183,7 +183,7 @@ const AdminBlogEditPage = ({ params }) => {
               <TagsInput
                 value={selectedTags}
                 onChange={(tags) =>
-                  setSelectedTags(tags.map((tag) => tag.toLowerCase()))
+                  setSelectedTags(tags?.map((tag) => tag.toLowerCase()))
                 }
                 name="tags"
                 placeHolder="Enter Tags"

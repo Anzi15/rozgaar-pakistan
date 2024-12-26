@@ -10,7 +10,7 @@ const RequestDetailsModal = ({ requestDetails, onClose }) => {
       aria-hidden="true"
       className="fixed top-0 right-0 left-0 z-50 flex md:items-center justify-center items-start w-full h-full overflow-y-scroll overflow-x-hidden bg-gray-800 bg-opacity-50"
     >
-      <div className="relative p-4 w-full md:max-w-4xl h-auto bg-white rounded-lg shadow dark:bg-gray-800 py-10 overflow-scroll">
+      <div className="relative p-4 w-full md:max-w-4xl h-auto bg-white rounded-lg shadow py-10 overflow-scroll">
         {/* Modal header */}
         <div className="flex justify-between items-center pb-4 mb-4 rounded-t brequest-b dark:brequest-gray-600">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white">

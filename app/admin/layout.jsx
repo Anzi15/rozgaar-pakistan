@@ -70,13 +70,13 @@ const AdminLayout = ({ children }) => {
 
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-20">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
                 onClick={() => setSideBarExpanded(!sideBarExpanded)}
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100"
               >
                 <span className="sr-only">Open sidebar</span>
                 <svg
@@ -94,7 +94,7 @@ const AdminLayout = ({ children }) => {
               </button>
               <Link href="/admin" className="flex ms-2 md:me-24">
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/005/544/770/small/profile-icon-design-free-vector.jpg" className="h-8 me-3" alt="Admin" />
-                <span className="self-center text-xl sm:text-2xl dark:text-white">Admin Panel</span>
+                <span className="self-center text-xl sm:text-2xl text-black">Admin Panel</span>
               </Link>
             </div>
             <AdminDropdownMenu
