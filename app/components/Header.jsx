@@ -20,7 +20,7 @@ const links = [
   {
     id: 3,
     name: "Cities",
-    href: "/cites",
+    href: "/cities",
   },
   {
     id: 4,

@@ -1,53 +1,24 @@
-import { getDocs, query } from "firebase/firestore";
-import Hero from "./components/Hero";
-import Image from "next/image";
-import LatestJobs from "./components/LatestJobs";
+import React from 'react'
+import Image from 'next/image'
 
-export default async function Home() {
-  // const q = query(app)
-  // const latestJobs = getDocs()
+const page = () => {
   return (
-    <>
-      <Hero
-        title="Mustakbil, Apke hath me."
-        subtitle="Explore the latest job openings, connect with top employers, and take your career to new heights."
-      />
-      <section className="flex p-6 items-center justify-center md:flex-row flex-col my-6 md:gap-2 gap-8">
-        <div className="flex flex-col md:gap-5 my-4">
-          <h2 className="text-3xl font-bold uppercase md:text-5xl md:text-left text-center">
-            Ab rahein tension free
-          </h2>
-          <p className="text-xl text-gray-700 md:text-left text-center">
-            Gher ke akhrajat, apne khuwab - sub karein poorein!
-          </p>
-        </div>
-        <div className="md:w-1/2">
-          <Image
-            src="https://i.ibb.co/4d8M4RX/download.png"
-            width="720"
-            height="720"
-            draggable="false"
-            alt="meow"
-            className="select-none"
-          />
-        </div>
-      </section>
-      <section className="bg-black text-white">
+    <div>
+            <section className="bg-black text-white">
         <div className="py-8">
           <h2 className="text-3xl font-bold uppercase md:text-5xl text-center">
             Apke shar mein!
           </h2>
           <p className="text-xl text-gray-300 text-center">
-            Jo Har Kadam Par Aapke Kareeb Ho.
+          Jo Har Kadam Par Aapke Kareeb Ho.
           </p>
         </div>
-
+      
         <div className="p-4 grid md:grid-cols-3 grid-cols-1 bg-white text-black">
           {[
             {
               name: "Karachi",
-              image:
-                "https://i.ibb.co/XF5PMB8/istockphoto-632443888-612x612.jpg",
+              image: "https://i.ibb.co/XF5PMB8/istockphoto-632443888-612x612.jpg",
               slug: "/jobs/collection/karachi",
             },
             {
@@ -100,7 +71,8 @@ export default async function Home() {
           ))}
         </div>
       </section>
-      <LatestJobs/>
-    </>
-  );
+    </div>
+  )
 }
+
+export default page
