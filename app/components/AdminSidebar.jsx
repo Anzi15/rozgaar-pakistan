@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { HiBookOpen, HiChartPie, HiInbox, HiMail, HiShoppingBag } from "react-icons/hi";
-import { AiFillMoneyCollect } from "react-icons/ai";
-import { IoSettings } from "react-icons/io5";
+import { HiBookOpen, HiChartPie, HiInbox, HiMail } from "react-icons/hi";
 
 export function AdminSidebar({ expanded = false }) {
   const [windowHeight, setWindowHeight] = useState(0);

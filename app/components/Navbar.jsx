@@ -1,4 +1,3 @@
-
 import Link from "next/link.js";
 
 function Navbar({ links }) {
