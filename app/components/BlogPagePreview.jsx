@@ -7,7 +7,6 @@ const BlogPagePreview = ({ blogData }) => {
   // const hasUploadedFiles = uploadedFiles.length > 0;
   // const hasDisplayImg = Boolean(displayImg);
 
-  console.log(blogData)
   return (
     <main className="pb-16 lg:pb-24 bg-white antialiased">
       <article className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue md:p-0 p-6">
@@ -26,26 +25,6 @@ const BlogPagePreview = ({ blogData }) => {
         <section
           dangerouslySetInnerHTML={{ __html: blogData.content }}
         ></section>
-        <section className="aspect-video rounded-lg w-full bg-blue-500 flex md:flex-row flex-col-reverse">
-          <Image
-            src={"https://i.ibb.co/VV2mxG4/humans.png"}
-            width={480}
-            height={480}
-            className="md:h-full md:w-fit w-full aspect-square md:block hidden"
-            alt="Human illustration" // Added alt text for accessibility
-          />
-          <div className="md:w-1/2 w-full p-4 flex flex-col justify-center items-start">
-            <h3 className="text-white font-bold text-3xl">
-              We can't help everyone, but everyone can help someone.
-            </h3>
-            <Link
-              href={"/donate"}
-              className="bg-white rounded-full px-3 py-2 text-blue-500 font-bold no-underline"
-            >
-              Donate Now
-            </Link>
-          </div>
-        </section>
       </article>
     </main>
   );

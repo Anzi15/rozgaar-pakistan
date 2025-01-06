@@ -20,19 +20,19 @@ export function AdminSidebar({ expanded = false }) {
       className={`md:block md:sticky top-0 ${expanded ? 'block' : 'hidden'} justify-start fixed z-20 h-full pt-8`}
       style={{ height: windowHeight }}
     >
-      <Sidebar.Items classNam="flex justify-start">
+      <Sidebar.Items className="flex justify-start">
         <Sidebar.ItemGroup>
           <Link href="/admin" className="flex justify-start text-gray-800">
-            <Sidebar.Item icon={HiChartPie}>Dashboard</Sidebar.Item>
+            <div>Dashboard</div>
           </Link>
           <Link href="/admin/volunteers-requests    " className="flex justify-start">
-            <Sidebar.Item icon={HiInbox}>Volunteers</Sidebar.Item>
+            <div >Volunteers</div>
           </Link>
           <Link href="/admin/inbox    " className="flex justify-start">
-            <Sidebar.Item icon={HiMail}>Inbox</Sidebar.Item>
+            <div>Inbox</div>
           </Link>
           <Link href="/admin/blogs" className="flex justify-start">
-            <Sidebar.Item icon={HiBookOpen}>Blogs</Sidebar.Item>
+            <div>Blogs</div>
           </Link>
         </Sidebar.ItemGroup>
       </Sidebar.Items>

@@ -9,11 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^11.1.0",
-    "next": "15.1.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-dropzone": "^14.3.5",
     "@material-tailwind/react": "^2.1.10",
     "@mui/icons-material": "^6.1.5",
     "@tiptap/core": "^2.9.1",
@@ -26,7 +21,13 @@
     "@tiptap/react": "^2.9.1",
     "@tiptap/starter-kit": "^2.9.1",
     "clsx": "^2.1.1",
+    "firebase": "^11.1.0",
+    "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",
+    "next": "15.1.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-dropzone": "^14.3.5",
     "react-firebase-hooks": "^5.1.1",
     "react-floating-whatsapp": "^5.0.8",
     "react-icons": "^5.3.0",
@@ -40,10 +41,10 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "@types/react": "18.3.12",
     "flowbite-typography": "^1.0.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
     "typescript": "5.6.3"
   }
 }

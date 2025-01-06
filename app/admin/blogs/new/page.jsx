@@ -13,7 +13,7 @@ import InputField from "../../../components/InputField";
 import Swal from "sweetalert2";
 
 import { useRouter } from "next/navigation"; // Use Next.js router
-import uploadImage from "../../../helper/imageUploader";
+import {uploadImage} from "../../../helper/imageUploader";
 
 const AdminNewBlogPage = () => {
   const router = useRouter(); // Use Next.js router
@@ -21,27 +21,26 @@ const AdminNewBlogPage = () => {
   const placeholderImg =
     "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png";
 
-  const [isTitleAlreadyExisting, setIsTitleAlreadyExisting] = useState(false);
-  const [isSlugAlreadyExisting, setIsSlugAlreadyExisting] = useState(false); // New state for slug existence
+  const [isSlugAlreadyExisting, setIsSlugAlreadyExisting] = useState(false); // State for slug existence
   const [coverImage, setCoverImage] = useState(null);
   const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState(""); // New state for slug
+  const [slug, setSlug] = useState(""); // State for slug
   const [subTitle, setSubTitle] = useState("");
   const [content, setContent] = useState(
     `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dui metus, aliquam a dapibus ut, faucibus et tortor. Quisque at vulputate ante, sed interdum tortor. Aliquam erat volutpat. Praesent vel tellus nisi. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce consequat vulputate maximus. Sed rhoncus in tellus ut laoreet. Nullam blandit in nisl id tincidunt. Integer vitae euismod tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas mollis id mi vel condimentum. Maecenas non leo non lectus egestas vehicula sed eget ipsum. Etiam ultrices tempus nisl, non fringilla enim tincidunt a. Sed vitae auctor ex.</p>`
   );
   const [selectedTags, setSelectedTags] = useState([]);
+  const [applyLink, setApplyLink] = useState(""); // State for applyLink
   const FormRef = useRef(null);
   const [publishing, setPublishing] = useState(false);
-  const [publishingMsg, setPublishingMsg] = useState("Publishing..");
+  const [publishingMsg, setPublishingMsg] = useState("Publishing...");
 
-  // Function to format slug
   const formatSlug = (input) => {
     return input
-      .toLowerCase() // Convert to lowercase
-      .trim() // Trim whitespace from both ends
-      .replace(/\s+/g, "-") // Replace spaces with hyphens
-      .replace(/[^a-z0-9-]/g, ""); // Remove invalid characters (only allow lowercase letters, numbers, and hyphens)
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
   };
 
   useEffect(() => {
@@ -62,17 +61,10 @@ const AdminNewBlogPage = () => {
     checkForExistence();
   }, [slug]);
 
-  const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const uploadResult = await uploadImage(file);
-      setCoverImage(uploadResult); // Save uploaded image info
-    }
-  };
-
   const handleFormSubmission = async (e) => {
     e.preventDefault();
-    if (!coverImage) {
+
+    if (!coverImage || !coverImage.preview) {
       toast.error("Upload Cover Image!", {
         position: "top-right",
         autoClose: 5000,
@@ -83,8 +75,9 @@ const AdminNewBlogPage = () => {
         progress: undefined,
         theme: "light",
       });
-      return; // Early return if images are not uploaded
+      return;
     }
+
     if (isSlugAlreadyExisting) {
       toast.error("Slug already exists! Please choose a different one.", {
         position: "top-right",
@@ -96,27 +89,41 @@ const AdminNewBlogPage = () => {
         progress: undefined,
         theme: "light",
       });
-      return; // Early return if slug already exists
+      return;
     }
 
+    let uploadedCoverImage = null; // Initialize variable
     setPublishing(true);
-    const uploadedCoverImage = await uploadImage(coverImage.preview);
+    setPublishingMsg("Uploading image...");
+      // console.log(coverImage.preview)
+    try {
+      console.log(coverImage)
+      console.log(coverImage.preview)
+      const uploadedImageData = await uploadImage(coverImage.preview); // Upload image
+      console.log(uploadedImageData)
+      uploadedCoverImage = uploadedImageData; // Assign uploaded image data
+    } catch (error) {
+      setPublishing(false);
+      toast.error("Error uploading image");
+      return;
+    }
+
+    setPublishingMsg("Saving to database...");
 
     const blogData = {
-      coverImage: uploadedCoverImage.originalUrl,
-      coverImageThumbnails: uploadedCoverImage.thumbnails,
+      coverImage: uploadedCoverImage,
       title,
       content,
       createdAt: Timestamp.now(),
       tags: selectedTags,
+      applyLink,
     };
+    console.log(blogData)
 
-    console.log(blogData);
     try {
-      setPublishingMsg("Connecting to database..");
-      const docRef = doc(db, "blogs", slug); // Use slug as document ID
+      const docRef = doc(db, "blogs", slug);
       await setDoc(docRef, blogData);
-      setPublishingMsg("All Set !!");
+      setPublishingMsg("All Set!");
       Swal.fire({
         text: "Blog Added",
         icon: "success",
@@ -125,13 +132,15 @@ const AdminNewBlogPage = () => {
         cancelButtonText: "Add another Blog",
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/admin/blogs"); // Use Next.js router for navigation
+          router.push("/admin/blogs");
         } else {
           window.location.reload();
         }
       });
     } catch (e) {
       console.error("Error adding document: ", e);
+    } finally {
+      setPublishing(false);
     }
   };
 
@@ -151,9 +160,9 @@ const AdminNewBlogPage = () => {
 
       <main className="py-16 px-4 md:w-[80vw] w-screen p-4">
         <div className="w-full flex flex-col justify-center items-center mb-16">
-          <h1 className="text-4xl text-left text-gray-800 ">Add a blog </h1>
+          <h1 className="text-4xl text-left text-gray-800 ">Add a blog</h1>
           <h3 className="text-xl text-left text-gray-800 ">
-            Let's create a masterpiece, together{" "}
+            Let's create a masterpiece, together
           </h3>
         </div>
 
@@ -174,23 +183,26 @@ const AdminNewBlogPage = () => {
                 valueReturner={setTitle}
                 requiredInput={true}
                 inputValue={title}
-                errorMsg={
-                  isTitleAlreadyExisting &&
-                  "Blog Already exists, kindly change the title"
-                }
               />
 
-              {/* New Input for Slug */}
               <InputField
                 inputName={"Slug (Unique)"}
                 inputType="text"
-                valueReturner={(value) => setSlug(formatSlug(value))} // Format the slug on input
+                valueReturner={(value) => setSlug(formatSlug(value))}
                 requiredInput={true}
                 inputValue={slug}
                 errorMsg={
                   isSlugAlreadyExisting &&
                   "Slug already exists! Please choose a different one."
                 }
+              />
+
+              <InputField
+                inputName={"Apply Link"}
+                inputType="text"
+                valueReturner={(value) => setApplyLink(value)}
+                requiredInput={false}
+                inputValue={applyLink}
               />
 
               <div className="max-w-full">
@@ -209,7 +221,7 @@ const AdminNewBlogPage = () => {
                 separators={["Enter", ",", " "]}
               />
               <em className="text-left">
-                Add tags to show them in relevant collections{" "}
+                Add tags to show them in relevant collections
               </em>
             </div>
 
