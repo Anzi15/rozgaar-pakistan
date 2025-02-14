@@ -12,7 +12,7 @@ const LatestJobs = () => {
     const fetchBlogs = async () => {
       try {
         const blogsRef = collection(db, 'blogs'); // Adjust 'blogs' to your Firestore collection name
-        const blogsQuery = query(blogsRef, orderBy('createdAt', 'desc'), limit(5)); // Fetch the 5 most recent blogs
+        const blogsQuery = query(blogsRef, orderBy('createdAt', 'desc'), limit(6)); // Fetch the 5 most recent blogs
         const querySnapshot = await getDocs(blogsQuery);
 
         const blogsData = querySnapshot.docs.map((doc) => ({
@@ -48,7 +48,7 @@ const LatestJobs = () => {
     <div>
       <h2 className='text-3xl py-8 font-bold text-center'>Latest Blogs</h2>
       {blogs.length > 0 ? (
-        <div className="blog-cards grid grid-cols-3 p-8">
+        <div className="blog-cards grid grid-cols-3 p-8 gap-4">
           {blogs.map((blog) => (
             <BlogCard
               key={blog.id}
